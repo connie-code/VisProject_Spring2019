@@ -1,55 +1,66 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
-  "hconcat":[
-    {
-      "data": {
-    "url": "data/seattle-weather.csv"
-  },
-  "vconcat": [
-    {
-      "encoding": {
-        "x": {"aggregate": "count", "type": "quantitative"},
-        "y": {"title": "Weather", "field": "weather", "type": "nominal"}
-      },
-      "width": 600,
-      "height": 200,
-      "mark": "bar",
-      "transform": [{"filter": {"selection": "brush"}}]
+  "hconcat":[{
+    "title": "Station 471",
+    "data": {
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/one_station.csv"
     },
-    {
+    "vconcat": [{
+      "title": "Detail View",
+      "width": 600,
+      "mark": "line",
       "encoding": {
         "x": {
-          "axis": {"title": "Date", "format": "%b"},
-          "field": "date",
-          "timeUnit": "monthdate",
-          "type": "temporal"
+          "field": "Time",
+          "type": "ordinal",
+          "scale": {"domain": {"selection": "brush"}},
+          "axis": {"title": "Time"}
         },
         "y": {
-          "axis": {"title": "Maximum Daily Temperature (C)"},
-          "field": "temp_max",
-          "scale": {"domain": [-5, 40]},
-          "type": "quantitative"
+          "field": "471",
+          "type": "quantitative",
+          "axis": {"title": "Number of bikes"}
         }
-      },
-      "width": 600,
-      "height": 300,
-      "mark": "bar",
-      "selection": {"brush": {"encodings": ["x"], "type": "interval"}}
-    }
-  ]
+      }
     },
+    {
+      "title": "Overiew April 2018",
+      "width": 600,
+      "height": 100,
+      "mark": "line",
+      "selection": {
+        "brush": {"type": "interval", "encodings": ["x"]}
+      },
+      "encoding": {
+        "x": {
+          "field": "Time",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "471",
+          "type": "quantitative",
+          "axis": {
+            "tickCount": 3,
+            "grid": false,
+            "title": "Number of bikes"
+          }
+        }
+      }
+    }]
+  },
+
     {
       "layer": [
         {
           "data": {
-            "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_withoutSI.json",
+            "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
             "format": {
               "type":"topojson",
               "feature": "boroughs"
             }
           },
           "projection": {
-            "type": "albersUsa"
+            "type": "mercator"
           },
           "mark": {
             "type": "geoshape",
@@ -61,15 +72,15 @@
               "value": "#e8e3d3"
             }
           },
-        "width": 700,
-        "height": 700
+        "width": 500,
+        "height": 680
         },
         {
           "data": {
             "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
           },
           "projection": {
-            "type": "albersUsa"
+            "type": "mercator"
           },
           "mark": "circle",
           "encoding": {
