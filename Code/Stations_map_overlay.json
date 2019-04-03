@@ -22,16 +22,11 @@
           "axis": {"title": "Number of bikes"}
         }
       }
-    },
-    {
+    },{
       "title": "Overiew April 2018",
       "width": 600,
       "height": 100,
-      "mark": "line",
-      "selection": {
-        "brush": {"type": "interval", "encodings": ["x"]}
-      },
-      "encoding": {
+      "encoding":{
         "x": {
           "field": "Time",
           "type": "ordinal"
@@ -45,62 +40,88 @@
             "title": "Number of bikes"
           }
         }
+      },
+      "layer": [{
+        "selection": {
+          "brush": {
+            "type": "interval",
+            "encodings": ["x"]
+          }
+        },
+        "mark": {"type": "area", "color": "grey"}
+      }, {
+        "transform": [
+          {"filter": {"selection": "brush"}}
+        ],
+        "mark": {"type": "area", "color": "steelblue"}
+      }]
+    }]
+  },{
+    "layer": [{
+      "width": 500,
+      "height": 680,
+      "data": {
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
+        "format": {
+          "type":"topojson",
+          "feature": "boroughs"
+        }
+      },
+      "projection": {
+        "type": "mercator"
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.25
+      },
+      "encoding": {
+        "color": {
+          "value": "#e8e3d3"
+        }
+      }
+    },{
+      "data": {
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
+      },
+      "projection": {
+        "type": "mercator"
+      },
+      "mark": "circle",
+      "selection": {
+        "pts": {
+          "type": "single",
+          "encodings": ["longitude","latitude"]
+        }
+      },
+      "encoding": {
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "condition": {
+            "selection": "pts",
+            "value": 60
+          },
+          "value": 30
+        },
+        "color": {
+          "condition": {
+            "selection": "pts",
+            "value": "blue"
+          },
+          "value": "grey"
+        },
+        "tooltip": {
+          "field": "Station Name",
+          "type": "nominal"
+        }
       }
     }]
-  },
-
-    {
-      "layer": [
-        {
-          "data": {
-            "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
-            "format": {
-              "type":"topojson",
-              "feature": "boroughs"
-            }
-          },
-          "projection": {
-            "type": "mercator"
-          },
-          "mark": {
-            "type": "geoshape",
-            "stroke": "black",
-            "strokeWidth": 0.25
-          },
-          "encoding": {
-            "color": {
-              "value": "#e8e3d3"
-            }
-          },
-        "width": 500,
-        "height": 680
-        },
-        {
-          "data": {
-            "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
-          },
-          "projection": {
-            "type": "mercator"
-          },
-          "mark": "circle",
-          "encoding": {
-            "longitude": {
-              "field": "Longitude",
-              "type": "quantitative"
-            },
-            "latitude": {
-              "field": "Latitude",
-              "type": "quantitative"
-            },
-            "size": {"value": 20},
-            "color": {"value": "blue"},
-            "tooltip": {
-              "field": "Station Name",
-              "type": "nominal"
-            }
-          }
-        }
-      ]
-    }
-  ]
+  }]
 }
