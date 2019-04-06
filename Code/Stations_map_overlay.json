@@ -8,6 +8,7 @@
     "vconcat": [{
       "title": "Detail View",
       "width": 600,
+      "height": 300,
       "mark": "line",
       "encoding": {
         "x": {
@@ -59,7 +60,7 @@
   },{
     "layer": [{
       "width": 500,
-      "height": 680,
+      "height": 650,
       "data": {
         "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
         "format": {
@@ -106,7 +107,7 @@
         "size": {
           "condition": {
             "selection": "pts",
-            "value": 100
+            "value": 220
           },
           "value": 60
         },
