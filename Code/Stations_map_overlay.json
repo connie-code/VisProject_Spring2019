@@ -8,17 +8,17 @@
     "vconcat": [{
       "title": "Detail View",
       "width": 600,
-      "height": 300,
+      "height": 350,
       "mark": "line",
       "encoding": {
         "x": {
           "field": "Time",
-          "type": "ordinal",
+          "type": "temporal",
           "scale": {"domain": {"selection": "brush"}},
           "axis": {"title": "Time"}
         },
         "y": {
-          "field": "471",
+          "field": "72",
           "type": "quantitative",
           "axis": {"title": "Number of bikes"}
         }
@@ -26,14 +26,14 @@
     },{
       "title": "Overiew April 2018",
       "width": 600,
-      "height": 100,
+      "height": 150,
       "encoding":{
         "x": {
           "field": "Time",
-          "type": "ordinal"
+          "type": "temporal"
         },
         "y": {
-          "field": "471",
+          "field": "72",
           "type": "quantitative",
           "axis": {
             "tickCount": 3,
@@ -60,7 +60,7 @@
   },{
     "layer": [{
       "width": 500,
-      "height": 650,
+      "height": 620,
       "data": {
         "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
         "format": {
