@@ -63,16 +63,16 @@
   },{
     "title": "Citibike Stations Map",
     "layer": [{
-      "width": 500,
+      "width": 300,
       "height": 620,
       "data": {
-        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_simplified.json",
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_withoutSI.json",
         "format": {
           "type":"topojson",
-          "feature": "boroughs"
+          "feature": "NYC_neighborhood"
         }
       },
-      "projection": {"type": "mercator"},
+      "projection": {"type": "albersUsa"},
       "mark": {
         "type": "geoshape",
         "stroke": "black",
@@ -83,7 +83,7 @@
       "data": {
         "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
       },
-      "projection": {"type": "mercator"},
+      "projection": {"type": "albersUsa"},
       "mark": {"type":"circle","fillOpacity":0.9},
       "selection": {
         "pts": {
