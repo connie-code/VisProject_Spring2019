@@ -61,61 +61,67 @@
       }]
     }]
   },{
-    "title": "Citibike Stations Map",
-    "layer": [{
-      "width": 300,
-      "height": 620,
-      "data": {
-        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
-        "format": {
-          "type":"topojson",
-          "feature": "NYC_neighborhood"
-        }
-      },
-      "projection": {"type": "albersUsa"},
-      "mark": {
-        "type": "geoshape",
-        "stroke": "black",
-        "strokeWidth": 0.15
-      },
-      "encoding": {"color": {"value": "#f2f2f2"}}
-    },{
-      "data": {
-        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
-      },
-      "projection": {"type": "albersUsa"},
-      "mark": {"type":"circle","fillOpacity":0.9},
-      "selection": {
-        "pts": {
-          "fields": ["StationID"],
-          "type": "single",
-          "encodings": ["longitude","latitude"]
-        }
-      },
-      "encoding": {
-        "longitude": {
-          "field": "Longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "Latitude",
-          "type": "quantitative"
-        },
-        "size": {
-          "condition": {"selection": "pts","value": 220},
-          "value": 60
-        },
-        "color": {
-          "field": "EventCount",
-          "type": "quantitative",
-          "scale":{
-            "reverse": true,
-            "domain": [0,3000,12000],
-            "scheme": "spectral"
-          }
-        },
-        "tooltip": {"field": "StationName","type": "nominal"}
+  "title": "Citibike Stations Map",
+  "layer": [{
+    "width": 400,
+    "height": 620,
+    "data": {
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
+      "format": {
+        "type":"topojson",
+        "feature": "NYC_neighborhood"
       }
-    }]
+    },
+    "transform":[{
+      "filter": "datum.properties.neighborhood == 'Sunset Park'"
+    }],
+    "projection": {"type": "albersUsa"},
+    "mark": {
+      "type": "geoshape",
+      "stroke": "black",
+      "strokeWidth": 0.15
+    },
+    "encoding": {"color": {"value": "#f2f2f2"}}
+  },{
+    "data": {
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
+    },
+     "transform":[{
+      "filter": "datum.neighborhood == 'Sunset Park'"
+    }],
+    "projection": {"type": "albersUsa"},
+    "mark": {"type":"circle","fillOpacity":0.9},
+    "selection": {
+      "pts": {
+        "fields": ["StationID"],
+        "type": "single",
+        "encodings": ["longitude","latitude"]
+      }
+    },
+    "encoding": {
+      "longitude": {
+        "field": "Longitude",
+        "type": "quantitative"
+      },
+      "latitude": {
+        "field": "Latitude",
+        "type": "quantitative"
+      },
+      "size": {
+        "condition": {"selection": "pts","value": 620},
+        "value": 220
+      },
+      "color": {
+        "field": "EventCount",
+        "type": "quantitative",
+        "scale":{
+          "reverse": true,
+          "domain": [0,2000,12000],
+          "scheme": "spectral"
+        }
+      },
+      "tooltip": {"field": "StationName","type": "nominal"}
+    }
   }]
+}]
 }
