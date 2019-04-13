@@ -29,6 +29,9 @@
       "title": "Overiew April 2018",
       "width": 550,
       "height": 180,
+      "transform":[{
+        "filter": "datum.station_id == 72"
+      }],
       "encoding":{
         "x": {
           "field": "time",
@@ -84,6 +87,7 @@
       "mark": {"type":"circle","fillOpacity":0.9},
       "selection": {
         "pts": {
+          "fields": ["StationID"],
           "type": "single",
           "encodings": ["longitude","latitude"]
         }
