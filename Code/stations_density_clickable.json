@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "title": "Citibike Neighborhood Stations Density",
+  "width": 300,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_withoutSI.json",
+    "format": {
+      "type": "topojson",
+      "feature": "NYC_neighborhood"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "'https://www.google.com/search?q=' + datum.properties.neighborhood",
+      "as": "url"
+    },{
+    "lookup": "properties.neighborhood",
+    "from": {
+      "data": {
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/nbh_density.csv"
+      },
+      "key": "neighborhood",
+      "fields": ["Density"]
+    }
+  }],
+  "projection": {
+    "type": "albersUsa"
+  },
+  "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.15
+  },
+  "encoding": {
+    "color": {
+      "field": "Density",
+      "type": "quantitative"
+    },
+    "tooltip":{
+      "field": "properties.neighborhood",
+      "type": "nominal"
+    },
+     "href": {"field": "url", "type": "nominal"}
+  }
+}
