@@ -1,4 +1,4 @@
-neighborhood,StationID,StationName,Latitude,Longitude,EventCount
+neighborhood,stationID,stationName,latitude,longitude,eventCount
 Astoria,3570,35 Ave & 37 St,40.7557327,-73.92366109999999,414
 Astoria,3572,34 Ave & 38 St,40.756913,-73.921631,615
 Astoria,3568,34 St & 35 Ave,40.756933200000006,-73.92622309999999,466

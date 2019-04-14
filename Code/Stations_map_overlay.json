@@ -2,16 +2,18 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "title": "Citibike Station Usage Visualization",
   "hconcat":[{
-    "title": "Station 72",
     "data": {
-      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/test.csv"
+      "url": "https://gist.githubusercontent.com/Hana87NH/c168ec4bb8a5a10698836163437df23a/raw/d28c85d9d3278959cce8d82ed513a1c9b00f4a74/test.csv"
     },
     "vconcat": [{
       "title": "Detail View",
       "width": 550,
       "height": 350,
-      "mark": "area",
-      "transform":[{"filter": "datum.types == 'bikes'"}],
+      "mark":"bar",
+      "transform":[{
+        "filter":
+        "datum.types == 'bikes' && datum.stationID == 3477"
+      }],
       "encoding": { 
         "x": {
           "field": "time",
@@ -30,7 +32,7 @@
       "width": 550,
       "height": 180,
       "transform":[{
-        "filter": "datum.station_id == 72"
+        "filter": "datum.stationID == 3477"
       }],
       "encoding":{
         "x": {
@@ -51,7 +53,7 @@
         }
       },
       "layer": [{
-        "mark": {"type": "area","opacity": 0.5},
+        "mark": {"type": "bar","opacity": 0.1},
         "selection": {
           "brush": {"type": "interval","encodings": ["x"]}
         }
