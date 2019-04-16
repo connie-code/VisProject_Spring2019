@@ -1,0 +1,41 @@
+header{
+	display: block;
+	background-color: #c6cec6;
+	border-radius: 8px;
+
+}
+
+h1 {
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #846c63;
+
+	width: 50px;
+	padding: 20;
+}
+
+ul {
+  list-style-type: none;
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  font-family: 'Source Sans Pro', sans-serif;
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px 14px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
