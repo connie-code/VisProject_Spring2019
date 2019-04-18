@@ -99,24 +99,35 @@ for neigborhood in neighborhoodToStations:
 	print(f' Creating {csvName}...')
 	with open(fullCsvNameWithPath, mode='w') as csv_file:
 		csv_writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-		firstRow = ['StationID','types', 'time', 'value', 'latitude', 'longitude'] 
+		firstRow = ['StationID', 'latitude', 'longitude', 'types', 'time', 'value',] 
 		csv_writer.writerow(firstRow)
 		for stationID in neighborhoodToStations[neigborhood]:
 			nextRow = []
 			if stationID not in stationIDtoListOfPointsInTime:
-				pass
+				nextRow.append(stationID)
+				if stationID in stationIDToLongLat:
+					nextRow.append(stationIDToLongLat[stationID][0])
+					nextRow.append(stationIDToLongLat[stationID][1])
+				else:
+					nextRow.append('')
+					nextRow.append('')
+				nextRow.append('')
+				nextRow.append('')
+				nextRow.append('')
+				csv_writer.writerow(nextRow)
+				nextRow = []
 			else:
 				for pointInTime in stationIDtoListOfPointsInTime[stationID]:
 					nextRow.append(stationID)
-					nextRow.append(pointInTime['type'])
-					nextRow.append(pointInTime['time'])
-					nextRow.append(pointInTime['val'])
 					if stationID in stationIDToLongLat:
 						nextRow.append(stationIDToLongLat[stationID][0])
 						nextRow.append(stationIDToLongLat[stationID][1])
 					else:
-						nextRow.append("-")
-						nextRow.append("-")
+						nextRow.append('')
+						nextRow.append('')
+					nextRow.append(pointInTime['type'])
+					nextRow.append(pointInTime['time'])
+					nextRow.append(pointInTime['val'])
 					csv_writer.writerow(nextRow)
 					nextRow = []
 	print(f' Finished {csvName}')
