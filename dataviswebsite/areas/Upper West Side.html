@@ -1,0 +1,208 @@
+<html>
+  <head>
+    <title>CitiBikes</title>
+    <link rel="stylesheet" type="text/css" href="../pretty.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.3.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0"></script>
+    <script src="../visualization.vl.js"></script>
+  </head>
+  <body>
+ 	<header>
+  		<img src="../citi_bikeiswhite.png" id="citibike" padding="300px" height="100px">
+  	</header>
+  		<nav>
+		  <ul id="menu">
+		      <li class=that><a href = "../thewebpage.html">Visualization</a></li>
+		      <li class=that><a href = "#report">Words</a></li>
+		  <ul>
+		</nav>
+  	<div id="vis"></div>
+  	<script type="text/javascript">
+	var yourVlSpec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "title": "Citibike Neighborhood Stations Density",
+  "width": 300,
+  "height": 500,
+  "data": {
+    "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/UpperWestSide.csv",
+    "format": {
+      "type": "topojson",
+      "feature": "NYC_neighborhood"
+    }
+  },
+  "transform": [
+    {
+      "calculate": "datum.properties.neighborhood + '.html'",
+      "as": "url"
+    },{
+    "lookup": "properties.neighborhood",
+    "from": {
+      "data": {
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/nbh_density.csv"
+      },
+      "key": "neighborhood",
+      "fields": ["Density"]
+    }
+  }],
+  "projection": {
+    "type": "albersUsa"
+  },
+  "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.15
+  },
+  "encoding": {
+    "color": {
+      "field": "Density",
+      "type": "quantitative"
+    },
+    "tooltip":{
+      "field": "properties.neighborhood",
+      "type": "nominal"
+    },
+     "href": {"field": "url", "type": "nominal"}
+  }
+}
+
+var yourV2Spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
+  "title": "Citibike Station Usage Visualization",
+  "hconcat":[{
+    "title": "Upper West Side",
+    "data": {
+      "url": "https://gist.githubusercontent.com/Hana87NH/c168ec4bb8a5a10698836163437df23a/raw/095a7017792452f6b6f4bba089b241668889306c/test.csv"
+    },
+    "vconcat": [{
+      "title": "Detail View",
+      "width": 550,
+      "height": 350,
+      "mark":"bar",
+      "transform":[{
+        "filter": "datum.types == 'bikes'" ,
+        "filter":{"selection": "pts"}
+      }],
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "temporal",
+          "scale": {"domain": {"selection": "brush"}},
+          "axis": {"title": "Time"}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number of bikes"}
+        }
+      }
+    },{
+      "title": "Overiew April 2018",
+      "width": 550,
+      "height": 180,
+      "mark": {"type": "bar", "color": "steelblue"},
+      "transform":[{"filter": {"selection": "pts"}}],
+      "selection": {
+          "brush": {"type": "interval","encodings": ["x"]}
+      },
+      "encoding":{
+        "x": {
+          "field": "time",
+          "type": "temporal",
+          "axis": {"title": "Time"}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "stack":"normalize",
+          "axis": null
+        },
+        "color":{
+          "field": "types",
+          "type": "nominal",
+          "scale": {"scheme": "darkblue"}
+        },
+        "fillOpacity":{
+          "condition":{"selection": "brush","value": 1},
+          "value":0.1
+        }
+      }
+    }]
+  },{
+  "title": "Citibike Stations Map",
+  "layer": [{
+    "width": 400,
+    "height": 620,
+    "data": {
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
+      "format": {
+        "type":"topojson",
+        "feature": "NYC_neighborhood"
+      }
+    },
+    "transform":[{
+      "filter": "datum.properties.neighborhood == 'Upper West Side'"
+    }],
+    "projection": {"type": "albersUsa"},
+    "mark": {
+      "type": "geoshape",
+      "stroke": "black",
+      "strokeWidth": 0.15
+    },
+    "encoding": {"color": {"value": "#f2f2f2"}}
+  },{
+    "data": {
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
+    },
+     "transform":[{
+      "filter": "datum.neighborhood == 'Upper West Side'"
+    }],
+    "projection": {"type": "albersUsa"},
+    "mark": "circle",
+    "selection": {
+      "pts": {
+        "fields": ["stationID"],
+        "type": "single",
+        "encodings": ["longitude","latitude"]
+      }
+    },
+    "encoding": {
+      "longitude": {
+        "field": "longitude",
+        "type": "quantitative"
+      },
+      "latitude": {
+        "field": "latitude",
+        "type": "quantitative"
+      },
+      "size": {
+        "condition": {"selection": "pts","value": 2000},
+        "value": 900
+      },
+      "fillOpacity":{
+        "condition":{"selection": "pts","value": 1},
+        "value":0.7
+      },
+      "color": {
+        "field": "eventCount",
+        "type": "quantitative",
+        "scale":{
+          "reverse": true,
+          "domain": [0,2000,12000],
+          "scheme": "spectral"
+        }
+      },
+      "tooltip":[
+        {"field": "stationName","type": "nominal"},
+        {"field": "stationID","type": "nominal"}
+      ]
+    }
+  }]
+}]
+}
+		vegaEmbed('#vis', yourVlSpec);
+      	vegaEmbed('#vis', yourV2Spec);
+    </script>
+  </body>
+</html>
