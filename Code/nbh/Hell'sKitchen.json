@@ -4,7 +4,7 @@
   "hconcat":[{
     "title": "Hell's Kitchen",
     "data": {
-      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/Hell'sKitchen.csv"
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/HellsKitchen.csv"
     },
     "vconcat": [{
       "title": "Detail View",
@@ -15,7 +15,7 @@
         "filter": "datum.types == 'bikes'" ,
         "filter":{"selection": "pts"}
       }],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
