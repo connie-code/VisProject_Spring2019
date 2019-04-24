@@ -4,7 +4,7 @@
   "hconcat":[{
     "title": "Greenwich Village",
     "data": {
-      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/Greenwich_village.csv"
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/GreenwichVillage.csv"
     },
     "vconcat": [{
       "title": "Detail View",
@@ -15,7 +15,7 @@
         "filter": "datum.types == 'bikes'" ,
         "filter":{"selection": "pts"}
       }],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",

@@ -26,7 +26,7 @@
   "width": 300,
   "height": 500,
   "data": {
-    "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/Chinatown.csv",
+    "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
     "format": {
       "type": "topojson",
       "feature": "NYC_neighborhood"
@@ -73,7 +73,7 @@ var yourV2Spec = {
   "hconcat":[{
     "title": "Chinatown",
     "data": {
-      "url": "https://gist.githubusercontent.com/Hana87NH/c168ec4bb8a5a10698836163437df23a/raw/095a7017792452f6b6f4bba089b241668889306c/test.csv"
+      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/neighborhoodCSVs/Chinatown.csv"
     },
     "vconcat": [{
       "title": "Detail View",
@@ -130,8 +130,12 @@ var yourV2Spec = {
       }
     }]
   },{
-  "title": "Citibike Stations Map",
-  "layer": [{
+  "title": "Chinatown Station Map",
+  "width": 800,
+  "height": 500,
+  "projection": {"type": "albersUsa"},
+  "layer": [
+    {
     "width": 400,
     "height": 620,
     "data": {
@@ -144,61 +148,74 @@ var yourV2Spec = {
     "transform":[{
       "filter": "datum.properties.neighborhood == 'Chinatown'"
     }],
-    "projection": {"type": "albersUsa"},
     "mark": {
       "type": "geoshape",
       "stroke": "black",
       "strokeWidth": 0.15
     },
     "encoding": {"color": {"value": "#f2f2f2"}}
-  },{
-    "data": {
-      "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
+  },
+    {
+      "data": {
+        "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
     },
-     "transform":[{
+      "transform":[{
       "filter": "datum.neighborhood == 'Chinatown'"
-    }],
-    "projection": {"type": "albersUsa"},
-    "mark": "circle",
-    "selection": {
-      "pts": {
-        "fields": ["stationID"],
-        "type": "single",
-        "encodings": ["longitude","latitude"]
-      }
-    },
-    "encoding": {
-      "longitude": {
-        "field": "longitude",
-        "type": "quantitative"
+      }],
+      "encoding": {
+        "longitude":
+        {"field": "longitude", "type": "quantitative"},
+        "latitude":
+        {"field": "latitude", "type": "quantitative"}
       },
-      "latitude": {
-        "field": "latitude",
-        "type": "quantitative"
-      },
-      "size": {
-        "condition": {"selection": "pts","value": 2000},
-        "value": 900
-      },
-      "fillOpacity":{
-        "condition":{"selection": "pts","value": 1},
-        "value":0.7
-      },
-      "color": {
-        "field": "eventCount",
-        "type": "quantitative",
-        "scale":{
-          "reverse": true,
-          "domain": [0,2000,12000],
-          "scheme": "spectral"
+      "layer": [
+        {
+        "mark": {"type": "circle", "color": "orange"},
+        "selection": {
+          "pts": {
+            "fields": ["stationID"],
+            "type": "single",
+            "encodings": ["longitude","latitude"]
+          }
+        },
+        "encoding":{
+          "size": {
+            "condition": {"selection": "pts","value": 2000},
+            "value": 900
+          },
+          "fillOpacity":{
+            "condition":{"selection": "pts","value": 1},
+            "value":0.7
+          },
+          "color": {
+            "field": "eventCount",
+            "type": "quantitative",
+            "scale":{
+              "reverse": true,
+              "domain": [0,2000,10000],
+              "scheme": "spectral"
+            }
+          },
+          "tooltip":[
+            {"field": "stationName",
+            "type": "nominal",
+            "title":"Station Name"}
+          ]
+        }},{
+        "mark": {"type": "text"},
+        "encoding": {
+          "text": {"field": "stationID", "type": "nominal"},
+          "color":{"value": "darkblue"},
+          "tooltip":[
+            {"field": "stationName",
+            "type": "nominal",
+            "title":"Station Name"}
+          ]
         }
-      },
-      "tooltip":[
-        {"field": "stationName","type": "nominal"},
-        {"field": "stationID","type": "nominal"}
+        }
       ]
     }
-  }]
+  ]
 }]
 }
 		vegaEmbed('#vis', yourVlSpec);
