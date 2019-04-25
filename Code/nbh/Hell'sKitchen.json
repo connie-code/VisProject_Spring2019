@@ -77,7 +77,7 @@
       }
     },
     "transform":[{
-      "filter": "datum.properties.neighborhood == 'Hell'sKitchen'"
+      "filter": "datum.properties.neighborhood == 'Hells Kitchen'"
     }],
     "mark": {
       "type": "geoshape",
@@ -91,7 +91,7 @@
         "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/bikeStationLongLat.csv"
     },
       "transform":[{
-      "filter": "datum.neighborhood == 'Hell'sKitchen'"
+      "filter": "datum.neighborhood == 'Hells Kitchen'"
       }],
       "encoding": {
         "longitude":
