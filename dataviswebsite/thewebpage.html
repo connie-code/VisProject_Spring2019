@@ -14,17 +14,18 @@
   	</header>
   		<nav>
 		  <ul id="menu">
-		      <li class=that><a href = "thewebpage.html">Visualization</a></li>
-		      <li class=that><a href = "#report">Words</a></li>
+		      <li class=that><a href = "thewebpage.html">Neighborhood Overview</a></li>
+		      <li class=that><a href = "#report">Report</a></li>
 		  <ul>
 		</nav>
+    <center>
   	<div id="vis"></div>
   	<script type="text/javascript">
 	var yourVlSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "title": "Citibike Neighborhood Stations Density",
-  "width": 300,
-  "height": 500,
+  "width": 500,
+  "height": 800,
   "data": {
     "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
     "format": {
@@ -70,5 +71,6 @@
 		vegaEmbed('#vis', yourVlSpec);
       	vegaEmbed('#vis', yourV2Spec);
     </script>
+  </center>
   </body>
 </html>
