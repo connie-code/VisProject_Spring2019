@@ -15,7 +15,7 @@
   		<nav>
 		  <ul id="menu">
 		      <li class=that><a href = "../thewebpage.html">Visualization</a></li>
-		      <li class=that><a href = "#report">Words</a></li>
+		      <li class=that><a href = "#report">Report</a></li>
 		  <ul>
 		</nav>
   	<div id="vis"></div>
@@ -30,7 +30,7 @@
       },
       "vconcat": [{
         "title": "Detail View",
-        "width": 550,
+        "width": 900,
         "height": 350,
         "mark":"bar",
         "transform":[{
@@ -52,7 +52,7 @@
         }
       },{
         "title": "Overiew April 2018",
-        "width": 550,
+        "width": 900,
         "height": 180,
         "mark": {"type": "bar", "color": "steelblue"},
         "transform":[{"filter": {"selection": "pts"}}],
@@ -89,7 +89,7 @@
     "projection": {"type": "albersUsa"},
     "layer": [
       {
-      "width": 400,
+      "width": 500,
       "height": 620,
       "data": {
         "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
@@ -172,7 +172,6 @@
   }]
   }
 		vegaEmbed('#vis', yourVlSpec);
-      	vegaEmbed('#vis', yourV2Spec);
     </script>
   </body>
 </html>
