@@ -9,39 +9,22 @@
     "vconcat": [{
       "title": "Detail View",
       "width": 550,
-      "height": 350,
-      "mark":"bar",
-      "transform":[{
-        "filter": "datum.types == 'bikes'" ,
-        "filter":{"selection": "pts"}
-      }],
+      "height": 300,
+      "mark": "bar",
+      "transform":[
+        {"filter":{"selection": "pts"}}
+      ],
       "encoding": { 
         "x": {
           "field": "time",
           "type": "temporal",
           "scale": {"domain": {"selection": "brush"}},
-          "axis": {"title": "Time"}
-        },
-        "y": {
-          "field": "value",
-          "type": "quantitative",
-          "axis": {"title": "Number of bikes"}
-        }
-      }
-    },{
-      "title": "Overiew April 2018",
-      "width": 550,
-      "height": 180,
-      "mark": {"type": "bar", "color": "steelblue"},
-      "transform":[{"filter": {"selection": "pts"}}],
-      "selection": {
-          "brush": {"type": "interval","encodings": ["x"]}
-      },
-      "encoding":{
-        "x": {
-          "field": "time",
-          "type": "temporal",
-          "axis": {"title": "Time"}
+          "axis": {
+            "title": "Time",
+            "formatType": "time",
+            "format": "%a %I:%p",
+            "labelAngle": -45
+          }
         },
         "y": {
           "field": "value",
@@ -52,7 +35,37 @@
         "color":{
           "field": "types",
           "type": "nominal",
-          "scale": {"scheme": "darkblue"}
+          "scale": {"range":["#adbac0","#22a1c2"]}
+        }
+      }
+    },{
+      "title": "Overiew April 2018",
+      "width": 550,
+      "height": 150,
+      "mark": {"type": "bar", "color": "#22a1c2"},
+      "selection": {
+          "brush": {"type": "interval","encodings": ["x"]}
+      },
+      "transform":[
+        {"filter":{"selection": "pts"}},
+        {"filter": "datum.types == 'bikes'"}
+      ],
+      "encoding": { 
+        "x": {
+          "field": "time",
+          "type": "temporal",
+          "scale": {"domain": {"selection": "brush"}},
+          "axis": {
+            "title": "Time",
+            "formatType": "time",
+            "format": "%m/%d/%y",
+            "labelAngle": -45
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number of bikes"}
         },
         "fillOpacity":{
           "condition":{"selection": "brush","value": 1},
@@ -62,13 +75,11 @@
     }]
   },{
   "title": "Theater District Station Map",
-  "width": 800,
-  "height": 500,
+  "width": 400,
+  "height": 600,
   "projection": {"type": "albersUsa"},
   "layer": [
     {
-    "width": 400,
-    "height": 620,
     "data": {
       "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
       "format": {
