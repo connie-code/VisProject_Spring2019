@@ -14,7 +14,7 @@
   	</header>
   		<nav>
 		  <ul id="menu">
-		      <li class=that><a href = "../thewebpage.html">Visualization</a></li>
+		      <li class=that><a href = "../thewebpage.html">Neighborhood Overview</a></li>
 		      <li class=that><a href = "#report">Report</a></li>
 		  <ul>
 		</nav>
@@ -31,40 +31,23 @@ var yourV2Spec = {
     },
     "vconcat": [{
       "title": "Detail View",
-      "width": 900,
-      "height": 350,
-      "mark":"bar",
-      "transform":[{
-        "filter": "datum.types == 'bikes'" ,
-        "filter":{"selection": "pts"}
-      }],
+      "width": 550,
+      "height": 300,
+      "mark": "bar",
+      "transform":[
+        {"filter":{"selection": "pts"}}
+      ],
       "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
           "scale": {"domain": {"selection": "brush"}},
-          "axis": {"title": "Time"}
-        },
-        "y": {
-          "field": "value",
-          "type": "quantitative",
-          "axis": {"title": "Number of bikes"}
-        }
-      }
-    },{
-      "title": "Overiew April 2018",
-      "width": 900,
-      "height": 180,
-      "mark": {"type": "bar", "color": "steelblue"},
-      "transform":[{"filter": {"selection": "pts"}}],
-      "selection": {
-          "brush": {"type": "interval","encodings": ["x"]}
-      },
-      "encoding":{
-        "x": {
-          "field": "time",
-          "type": "temporal",
-          "axis": {"title": "Time"}
+          "axis": {
+            "title": "Time",
+            "formatType": "time",
+            "format": "%a %I:%p",
+            "labelAngle": -45
+          }
         },
         "y": {
           "field": "value",
@@ -75,7 +58,37 @@ var yourV2Spec = {
         "color":{
           "field": "types",
           "type": "nominal",
-          "scale": {"scheme": "darkblue"}
+          "scale": {"range":["#adbac0","#22a1c2"]}
+        }
+      }
+    },{
+      "title": "Overiew April 2018",
+      "width": 550,
+      "height": 150,
+      "mark": {"type": "bar", "color": "#22a1c2"},
+      "selection": {
+          "brush": {"type": "interval","encodings": ["x"]}
+      },
+      "transform":[
+        {"filter":{"selection": "pts"}},
+        {"filter": "datum.types == 'bikes'"}
+      ],
+      "encoding": {
+        "x": {
+          "field": "time",
+          "type": "temporal",
+          "scale": {"domain": {"selection": "brush"}},
+          "axis": {
+            "title": "Time",
+            "formatType": "time",
+            "format": "%m/%d/%y",
+            "labelAngle": -45
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {"title": "Number of bikes"}
         },
         "fillOpacity":{
           "condition":{"selection": "brush","value": 1},
@@ -85,13 +98,11 @@ var yourV2Spec = {
     }]
   },{
   "title": "Ditmars Steinway Station Map",
-  "width": 800,
-  "height": 500,
+  "width": 400,
+  "height": 600,
   "projection": {"type": "albersUsa"},
   "layer": [
     {
-    "width": 500,
-    "height": 620,
     "data": {
       "url": "https://raw.githack.com/Hana87NH/VisProject_Spring2019/master/Data/NYC_topo.json",
       "format": {
@@ -172,7 +183,7 @@ var yourV2Spec = {
   ]
 }]
 }
-      	vegaEmbed('#vis', yourV2Spec);
+	vegaEmbed('#vis', yourV2Spec);
     </script>
   </body>
 </html>
