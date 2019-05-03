@@ -14,7 +14,7 @@
   	</header>
   		<nav>
 		  <ul id="menu">
-		      <li class=that><a href = "../thewebpage.html">Visualization</a></li>
+		      <li class=that><a href = "../thewebpage.html">Neighborhood Overview</a></li>
 		      <li class=that><a href = "#report">Report</a></li>
 		  <ul>
 		</nav>
@@ -37,7 +37,7 @@ var yourV2Spec = {
       "transform":[
         {"filter":{"selection": "pts"}}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
@@ -73,7 +73,7 @@ var yourV2Spec = {
         {"filter":{"selection": "pts"}},
         {"filter": "datum.types == 'bikes'"}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
@@ -183,7 +183,7 @@ var yourV2Spec = {
   ]
 }]
 }
-      	vegaEmbed('#vis', yourV2Spec);
+	vegaEmbed('#vis', yourV2Spec);
     </script>
   </body>
 </html>
