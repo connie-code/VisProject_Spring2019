@@ -14,7 +14,7 @@
       "transform":[
         {"filter":{"selection": "pts"}}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
@@ -50,7 +50,7 @@
         {"filter":{"selection": "pts"}},
         {"filter": "datum.types == 'bikes'"}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
