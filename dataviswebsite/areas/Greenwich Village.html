@@ -14,12 +14,13 @@
   	</header>
   		<nav>
 		  <ul id="menu">
-		      <li class=that><a href = "../thewebpage.html">Visualization</a></li>
+		      <li class=that><a href = "../thewebpage.html">Neighborhood Overview</a></li>
 		      <li class=that><a href = "#report">Report</a></li>
 		  <ul>
 		</nav>
   	<div id="vis"></div>
   	<script type="text/javascript">
+
 	var yourVlSpec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
   "title": "Citibike Station Usage Visualization",
@@ -36,7 +37,7 @@
       "transform":[
         {"filter":{"selection": "pts"}}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
@@ -72,7 +73,7 @@
         {"filter":{"selection": "pts"}},
         {"filter": "datum.types == 'bikes'"}
       ],
-      "encoding": { 
+      "encoding": {
         "x": {
           "field": "time",
           "type": "temporal",
