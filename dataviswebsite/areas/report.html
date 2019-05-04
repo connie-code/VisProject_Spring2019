@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>CitiBikes</title>
+    <link rel="stylesheet" type="text/css" href="../pretty.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.3.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@3.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@4.0.0"></script>
+    <script src="../visualization.vl.js"></script>
+  </head>
+  <body>
+ 	<header>
+  		<img src="../citi_bikeiswhite.png" id="citibike" padding="300px" height="100px">
+  	</header>
+  		<nav>
+		  <ul id="menu">
+		      <li class=that><a href = "../thewebpage.html">Neighborhood Overview</a></li>
+          <li class=that><a href = "report.html">Report</a></li>
+          <li class=that><a href = "slides.html">Presentation Slides</a></li>
+		  <ul>
+		</nav>
+    <center>
+  	<div id="vis"></div>
+      <embed src="../report.pdf" width="800px" height="1000px" />
+  </center>
+  </body>
+</html>
